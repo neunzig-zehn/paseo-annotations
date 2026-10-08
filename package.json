@@ -2,7 +2,7 @@
   "name": "paseo-annotations",
   "private": true,
   "version": "0.1.0",
-  "description": "Annotate passages in a Paseo chat and send them with your next message",
+  "description": "Comment on any part of an agent's answer, like reviewing a doc",
   "files": [
     "paseo-plugin.json",
     "OVERVIEW.md",
@@ -11,10 +11,12 @@
     "index.server.ts",
     "client/",
     "server/",
-    "shared/"
+    "shared/",
+    "assets/"
   ],
   "scripts": {
-    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.server.json"
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.server.json",
+    "hero": "\"${CHROME:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}\" --headless=new --hide-scrollbars --force-device-scale-factor=1.5 --window-size=1200,750 --screenshot=assets/hero.png assets/hero.html"
   },
   "devDependencies": {
     "@getpaseo/plugin": "0.11.1",

@@ -6,9 +6,7 @@ import { annotationSchema, type Annotation } from "../shared/annotations";
 
 // Not `<home>/plugins/<id>`: Paseo keeps npm and Git installations there and
 // deletes that directory when such a plugin is removed.
-const stateDir =
-  process.env.PASEO_PLUGIN_STATE_DIR ??
-  join(process.env.PASEO_HOME ?? join(homedir(), ".paseo"), "plugin-data", "annotations");
+const stateDir = join(process.env.PASEO_HOME ?? join(homedir(), ".paseo"), "plugin-data", "annotations");
 const filePath = join(stateDir, "annotations.json");
 
 const fileSchema = z.object({ version: z.literal(1), annotations: z.array(annotationSchema) });

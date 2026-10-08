@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#000"/>
+  <!-- Three lines of a chat answer; the middle one is annotated. -->
+  <rect x="146" y="140" width="268" height="40" rx="20" fill="#3f3f46"/>
+  <rect x="122" y="214" width="316" height="84" rx="20" fill="#2563eb" fill-opacity="0.42"/>
+  <rect x="146" y="236" width="236" height="40" rx="20" fill="#fafafa"/>
+  <rect x="146" y="332" width="188" height="40" rx="20" fill="#3f3f46"/>
+  <!-- The numbered badge pinned to the passage, as in the chat. -->
+  <circle cx="122" cy="216" r="56" fill="#2563eb" stroke="#000" stroke-width="14"/>
+  <text x="122" y="240" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="68" font-weight="700" fill="#fff">1</text>
+</svg>

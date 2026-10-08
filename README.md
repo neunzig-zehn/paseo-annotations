@@ -1,6 +1,6 @@
 # Annotations for Paseo
 
-A [Paseo](https://paseo.sh) plugin for commenting on passages in a chat. Select text, add a comment, and the annotation goes out with your next message, or ask about the passage in a new chat. See [OVERVIEW.md](OVERVIEW.md) for what it does and what it stores.
+A [Paseo](https://paseo.sh) plugin for reviewing an agent's answer like a doc. Select any passage, leave a comment, and every waiting comment goes out with your next message, or ask about the passage in a new chat. See [OVERVIEW.md](OVERVIEW.md) for what it does and what it stores.
 
 ## Install
 
@@ -20,6 +20,8 @@ npm run typecheck
 paseo plugin install "$PWD"
 paseo plugin reload annotations
 ```
+
+`npm run hero` renders `assets/hero.png`, the first listing image, from `assets/hero.html` with Chrome; set `CHROME` to use another Chromium binary.
 
 | Path                     | Runtime | Role                                                                            |
 | ------------------------ | ------- | ------------------------------------------------------------------------------- |

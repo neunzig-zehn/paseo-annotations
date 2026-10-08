@@ -1,8 +1,12 @@
 {
   "id": "annotations",
   "name": "Annotations",
-  "description": "Comment on passages in a chat and send them with your next message, or ask about them in a new chat",
-  "media": [],
+  "description": "Comment on any part of an agent's answer, like reviewing a doc",
+  "icon": "assets/icon.png",
+  "media": [
+    "assets/hero.png",
+    "assets/screenshot-selection.png"
+  ],
   "requirements": {
     "paseo": ">=0.11.1"
   }

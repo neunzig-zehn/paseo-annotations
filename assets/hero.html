@@ -1,0 +1,187 @@
+<!doctype html>
+<!-- The registry's first image. Render with `npm run hero`; colors and metrics are Paseo's dark theme. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Annotations for Paseo</title>
+    <style>
+      :root {
+        --surface0: #181b1a;
+        --surface1: #1e2120;
+        --surface3: #434645;
+        --sidebar: #141716;
+        --foreground: #fafafa;
+        --muted: #a1a5a4;
+        --extra-muted: #717574;
+        --border: #252b2a;
+        --border-accent: #2f3534;
+        --accent: #20744a;
+        --badge: #2563eb;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; width: 1200px; height: 750px; overflow: hidden; }
+      body {
+        display: grid;
+        grid-template-columns: 456px 1fr;
+        background: var(--sidebar);
+        color: var(--foreground);
+        font-family: system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      svg { display: block; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+      .pitch { display: flex; flex-direction: column; justify-content: center; gap: 28px; padding-left: 72px; }
+      .brand { display: flex; align-items: center; gap: 12px; font-size: 18px; color: var(--muted); }
+      .brand img { width: 36px; height: 36px; border-radius: 9px; }
+      h1 { margin: 0; font-size: 54px; line-height: 60px; font-weight: 600; letter-spacing: -1.6px; }
+      .lede { margin: 0; font-size: 20px; line-height: 30px; color: var(--muted); }
+      .proof { display: flex; align-items: center; gap: 12px; margin-top: 8px; font-size: 15px; color: var(--extra-muted); }
+      .proof b { font-weight: 400; color: var(--foreground); }
+      .proof svg { width: 14px; height: 14px; }
+
+      .window {
+        margin: 80px 0 0 16px;
+        background: var(--surface0);
+        border: 1px solid var(--border-accent);
+        border-width: 1px 0 0 1px;
+        border-top-left-radius: 16px;
+        overflow: hidden;
+      }
+      .zoom { zoom: 1.35; display: flex; flex-direction: column; height: 100%; }
+      .header { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 20px; border-bottom: 1px solid var(--border); font-size: 14px; }
+      .header .project { color: var(--muted); }
+      .header svg { width: 16px; height: 16px; color: var(--muted); }
+      .chat { position: relative; flex: 1; display: flex; flex-direction: column; width: 540px; padding: 24px 32px 24px; }
+
+      .text { font-size: 15px; line-height: 21px; }
+      .assistant p { margin: 0 0 12px; }
+      .assistant ol { margin: 0; padding-left: 20px; }
+      .assistant li { position: relative; margin-bottom: 6px; padding-left: 8px; }
+      code { font: 13px/1 ui-monospace, Menlo, monospace; padding: 1px 4px; border-radius: 4px; background: #272a29; }
+
+      /* Waiting annotations: Paseo's browser annotation tint and numbered badge. */
+      mark { position: relative; color: inherit; background: color-mix(in srgb, var(--badge) 18%, transparent); }
+      mark.focus { background: color-mix(in srgb, var(--badge) 32%, transparent); }
+      .badge {
+        position: absolute;
+        left: -9px;
+        top: -9px;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 4px;
+        border-radius: 9px;
+        background: var(--badge);
+        color: #fff;
+        font: 600 11px/18px system-ui, -apple-system, sans-serif;
+        text-align: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      }
+
+      .card {
+        position: absolute;
+        z-index: 1;
+        left: 8px;
+        top: calc(100% + 8px);
+        width: 340px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+        background: var(--surface0);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18), 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-size: 14px;
+        line-height: 18px;
+      }
+      .card-header { display: flex; align-items: center; justify-content: space-between; font-weight: 600; }
+      .card-header svg { width: 16px; height: 16px; color: var(--muted); }
+      .field { min-height: 64px; padding: 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface1); line-height: 20px; }
+      .actions { display: flex; justify-content: flex-end; gap: 8px; }
+      .action { display: grid; place-items: center; min-height: 32px; padding: 0 12px; border-radius: 12px; color: var(--muted); }
+      .action.default { background: var(--accent); color: #fff; }
+      .caret { display: inline-block; width: 1.5px; height: 17px; margin-left: 1px; vertical-align: -3px; background: var(--foreground); }
+
+      .bottom { margin-top: auto; }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        margin-bottom: 10px;
+        padding: 4px 12px;
+        border: 1px solid var(--border-accent);
+        border-radius: 16px;
+        background: var(--surface1);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .composer { padding: 16px 16px 12px; background: var(--surface1); border: 1px solid var(--border-accent); border-radius: 16px; }
+      .composer .text { min-height: 42px; color: var(--extra-muted); }
+      .controls { display: flex; align-items: center; justify-content: space-between; color: var(--muted); }
+      .controls svg { width: 16px; height: 16px; }
+      .send { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 14px; background: var(--accent); color: #fff; }
+    </style>
+  </head>
+  <body>
+    <section class="pitch">
+      <div class="brand"><img src="icon.png" alt="" />Annotations for Paseo</div>
+      <h1>Review answers<br />like a doc.</h1>
+      <p class="lede">
+        Select any passage, leave a comment, and send all your notes with your next message.
+      </p>
+      <div class="proof">
+        <b>Select</b>
+        <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></svg>
+        <b>Comment</b>
+        <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></svg>
+        <b>Send</b>
+      </div>
+    </section>
+
+    <section class="window">
+      <div class="zoom">
+        <div class="header">
+          <span>Add caching to orders</span><span class="project">acme-api</span>
+          <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1" /><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /></svg>
+        </div>
+        <div class="chat">
+          <div class="assistant text">
+            <p>Use Redis as a read-through cache in front of the orders query.</p>
+            <ol>
+              <li>
+                <mark><span class="badge">1</span>Store misses for 24 hours</mark> after checking
+                <code>cache.get(key)</code>.
+              </li>
+              <li>
+                <mark class="focus"><span class="badge">2</span>Delete the order's key</mark> whenever
+                the order changes.
+                <div class="card">
+                  <div class="card-header">
+                    Annotation
+                    <svg viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                  </div>
+                  <div class="field">Also clear the customer's order list<span class="caret"></span></div>
+                  <div class="actions">
+                    <span class="action">Delete</span>
+                    <span class="action default">Save</span>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="bottom">
+            <span class="pill">2 annotations</span>
+            <div class="composer">
+              <div class="text">Message the agent, tag @files, or use /commands</div>
+              <div class="controls">
+                <svg viewBox="0 0 24 24"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
+                <span class="send"><svg viewBox="0 0 24 24"><path d="m5 12 7-7 7 7" /><path d="M12 19V5" /></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
