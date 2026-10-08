@@ -1,0 +1,9 @@
+{
+  "id": "annotations",
+  "name": "Annotations",
+  "description": "Comment on passages in a chat and send them with your next message, or ask about them in a new chat",
+  "media": [],
+  "requirements": {
+    "paseo": ">=0.11.1"
+  }
+}

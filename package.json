@@ -1,0 +1,34 @@
+{
+  "name": "paseo-annotations",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Annotate passages in a Paseo chat and send them with your next message",
+  "files": [
+    "paseo-plugin.json",
+    "OVERVIEW.md",
+    "NOTICE.md",
+    "index.client.tsx",
+    "index.server.ts",
+    "client/",
+    "server/",
+    "shared/"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.server.json"
+  },
+  "devDependencies": {
+    "@getpaseo/plugin": "0.11.1",
+    "@tanstack/react-query": "^5.90.11",
+    "@types/node": "^22.20.5",
+    "@types/react": "~19.2.0",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "typescript": "^5.9.3",
+    "zod": "^4.4.3"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neunzig-zehn/paseo-annotations.git"
+  }
+}
