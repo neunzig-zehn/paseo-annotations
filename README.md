@@ -40,7 +40,7 @@ Paseo 0.11.1 has no plugin API for chat selections, the message box, or chat dec
 - `markers.ts` tints annotated passages through the CSS Custom Highlight API and pins numbered badges to waiting ones, styled after Paseo's browser annotation badges.
 - `send-hook.ts` appends waiting annotations to the composer on Enter or the send button, and takes them back out when the key did not send.
 
-With the plugin on several hosts, each installation only handles chats of agents on its own host (`client/agents.ts`).
+With the plugin on several hosts, each installation only handles chats of agents on its own host (`client/agents.ts`). The app loads every installation's client into the same page, so each loaded copy registers its passage highlights under names of its own (`highlightName()` in `client/web/theme.ts`).
 
 ## Credits
 
