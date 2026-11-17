@@ -79,8 +79,22 @@ button:focus-visible { border-color: var(--colors-border-accent); }
 .icon-button:hover:not(:disabled) { background: var(--colors-surface2); color: var(--colors-foreground); }
 `;
 
+/**
+ * The app loads the plugin once per connected host that has it, all into one
+ * page, and the browser keeps one highlight per name: copies sharing names
+ * would take them from each other, leaving one copy's passages with badges but
+ * no tint, and one copy's cleanup would delete another's. Each loaded copy
+ * names its highlights with a suffix of its own.
+ */
+const COPY = Math.random().toString(36).slice(2, 8);
+
+/** This copy's name for one of its passage highlights. */
+export function highlightName(kind: "draft" | "pending" | "sent" | "focus"): string {
+  return `paseo-annotation-${COPY}-${kind}`;
+}
+
 /** The passage being commented on, painted like the browser's own selection. */
-export const DRAFT_HIGHLIGHT = "paseo-annotation-draft";
+export const DRAFT_HIGHLIGHT = highlightName("draft");
 
 /** The blue of the numbered badges Paseo puts on annotated browser elements. */
 export const BADGE_COLOR = "#2563eb";
@@ -90,13 +104,13 @@ const PAGE_CSS = `
 ::highlight(${DRAFT_HIGHLIGHT}) {
   background-color: Highlight;
 }
-::highlight(paseo-annotation-pending) {
+::highlight(${highlightName("pending")}) {
   background-color: color-mix(in srgb, ${BADGE_COLOR} 18%, transparent);
 }
-::highlight(paseo-annotation-sent) {
+::highlight(${highlightName("sent")}) {
   background-color: color-mix(in srgb, var(--colors-foreground) 8%, transparent);
 }
-::highlight(paseo-annotation-focus) {
+::highlight(${highlightName("focus")}) {
   background-color: color-mix(in srgb, ${BADGE_COLOR} 32%, transparent);
 }
 [data-paseo-annotations-field]::placeholder { color: var(--colors-foreground-muted); opacity: 1; }

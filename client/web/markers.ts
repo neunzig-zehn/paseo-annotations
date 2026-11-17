@@ -29,7 +29,7 @@ import {
   type DomRange,
   type DomRect,
 } from "./dom";
-import { BADGE_COLOR, createLayer } from "./theme";
+import { BADGE_COLOR, createLayer, highlightName } from "./theme";
 
 /** Paseo's browser annotation badge: 18px tall, 600 11px numerals, white on blue. */
 const BADGE_SIZE = 18;
@@ -284,7 +284,9 @@ export function installMarkers(
       web.window.removeEventListener("resize", schedule);
       web.document.removeEventListener("click", onClick);
       web.window.cancelAnimationFrame(frame);
-      for (const name of Object.keys(highlights ?? {})) web.CSS?.highlights?.delete(`paseo-annotation-${name}`);
+      for (const name of Object.keys(highlights ?? {})) {
+        web.CSS?.highlights?.delete(highlightName(name as HighlightName));
+      }
       host.remove();
     },
   };
@@ -302,7 +304,7 @@ function createHighlights(): Record<HighlightName, DomHighlight> | null {
     focus: new Highlight(),
   };
   for (const [name, highlight] of Object.entries(highlights)) {
-    registry.set(`paseo-annotation-${name}`, highlight);
+    registry.set(highlightName(name as HighlightName), highlight);
   }
   return highlights;
 }
